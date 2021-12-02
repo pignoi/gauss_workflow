@@ -41,13 +41,15 @@ class xyzReader:
         # 再依次读取文件中原子坐标的信息
         atoms = []
         for atom in sta_lines:
-            atoms.append(f" {atom.split()[0]}    {atom.split()[1]}    {atom.split()[2]}    {atom.split()[3]}")
+            atoms.append(f" {atom.split()[0]}    {atom.split()[1]}    {atom.split()[2]}    {atom.split()[3]}")    # 将原子坐标信息格式化输出
         atom_part = "\n".join(atoms)
         return atom_part
 
     def wr(self):
         final_name = self.file.split('.')[0] + ".gjf"
         with open(final_name,"a+") as f:
+            f.seek(0)
+            f.truncate()
             f.write(f"%cpu={self.cpus}\n")
             f.write(f"%mem={self.mems}\n")
             f.write(f"#{self.todo} {self.method}\n\n")

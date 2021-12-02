@@ -1,4 +1,5 @@
 import os
+import json
 
 class choose_opt:
     def __init__(self,file,todo_num,method_num):
@@ -16,21 +17,24 @@ class choose_opt:
 
 class compute_use:
     def __init__(self):
-        self.cpus = self.make_json()[0]
-        self.mems = self.make_json()[1]
+        mes = self.make_json()
+        self.cpus = mes[0]
+        self.mems = mes[1]
 
     def make_json(self):
         if os.path.exists("gw_setting.json") == 1:
             with open("gw_setting.json") as f:
-                ins = f.readlines()
+                json_mes = json.load(f)
             try:
-                cpu = int(eval(ins[0].split("=")[-1]))
-                mem = ins[1].split("=")[-1]
+                cpu = json_mes["compute_resourse"]["use_cpus"]
+                mem = json_mes["compute_resourse"]["use_mems"]
                 return [cpu,mem]
             except:
                 raise IOError
         else:
             with open("gw_setting.json","a+") as f:
-                f.write("use_cpus = 1\n")
-                f.write("use_mem =  1 GB")
+                init_data = {"compute_resourse":{"use_cpus":"1","use_mems":"1 GB"}}
+                json_data = json.dumps(init_data, sort_keys=True, indent=4, separators=(',', ': '))
+                f.write(json_data)
+            f.close()
             return [1, 1]

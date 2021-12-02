@@ -1,5 +1,5 @@
-%cpu=1
-%mem=  1 GB
+%cpu=20
+%mem=40 GB
 #opt b3lyp/6-31gd
 
 Title card required
