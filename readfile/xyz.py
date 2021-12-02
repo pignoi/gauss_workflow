@@ -13,8 +13,8 @@ import os
 class xyzReader:
     def __init__(self,file,todo,method,cpus,mems):
         self.file = file
-        self.todo = todo
-        self.method = method
+        self.todo = todo        # 计算的目的，如结构优化、计算IR等等
+        self.method = method    # 计算使用的泛函以及基组方法
         self.cpus = cpus
         self.mems = mems
         self.output = self.wr()
