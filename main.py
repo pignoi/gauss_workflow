@@ -1,12 +1,11 @@
-import readfile.xyz
-import userin.opt
+import achemflow.readfile.xyz as xyz
+import achemflow.userin.opt as opt
 
 a = "test.xyz"
 b = 1
 c = 1
 
-user = userin.opt.choose_opt(a,b,c)
-mechine = userin.opt.compute_use()
+user = opt.choose_opt(a,b,c)
+mechine = opt.compute_use()
 
-a = readfile.xyz.xyzReader(user.file,user.todo,user.method,mechine.cpus,mechine.mems)
-
+a = xyz.xyzReader(user.file,user.todo,user.method,mechine.cpus,mechine.mems)

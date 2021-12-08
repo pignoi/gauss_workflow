@@ -11,8 +11,8 @@
 import os
 
 class xyzReader:
-    def __init__(self,file,todo,method,cpus,mems):
-        self.file = file
+    def __init__(self,file1,todo,method,cpus,mems):
+        self.file = file1
         self.todo = todo        # 计算的目的，如结构优化、计算IR等等
         self.method = method    # 计算使用的泛函以及基组方法
         self.cpus = cpus
@@ -55,5 +55,7 @@ class xyzReader:
             f.write(f"#{self.todo} {self.method}\n\n")
             f.write("Title card required\n\n")
             f.write("0 1\n")
-            f.write(f"{self.rd()}\n")
-        f.close()
+            f.write(f"{self.rd()}\n\n")
+            f.close()
+
+        return final_name
